@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.OAuthClients", "Home.O
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.OAuthClients.Tests", "Home.OAuthClients.Tests\Home.OAuthClients.Tests.csproj", "{438DB71B-6031-4357-AB09-94F38500BE63}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C235A6C-FB33-437F-ACC4-C598E8C95052}"
+	ProjectSection(SolutionItems) = preProject
+		Pipeline.yaml = Pipeline.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
