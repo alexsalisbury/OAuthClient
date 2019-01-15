@@ -2,14 +2,33 @@
 {
     using System.Net;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
 
+    /// <summary>
+    /// Represents the result from an HTTP call using the RestClient
+    /// </summary>
     public class HTTPResult : System.IEquatable<HTTPResult>
     {
-        public HttpStatusCode HttpResponseCode { get; private set; }
-        public string Content { get; private set; }
-        public bool Success { get; private set; }
+        /// <summary>
+        /// The HTTP Response Code from the server.
+        /// </summary>
+        public HttpStatusCode HttpResponseCode { get; }
 
+        /// <summary>
+        /// The content of the response. May be populated in error scenarios.
+        /// </summary>
+        public string Content { get; }
+
+        /// <summary>
+        /// Memoizes the response's IsSuccessStatusCode 
+        /// </summary>
+        public bool Success { get;  }
+
+        /// <summary>
+        /// Creates an HTTP Response with the given parameters
+        /// </summary>
+        /// <param name="responsecode">The HTTP Response Code from the server</param>
+        /// <param name="content">The content of the response</param>
+        /// <param name="success">The response's IsSuccessStatusCode</param>
         public HTTPResult(HttpStatusCode responsecode, string content, bool success)
         {
             this.HttpResponseCode = responsecode;
@@ -17,6 +36,11 @@
             this.Success = success;
         }
 
+        /// <summary>
+        /// Deep compare of properties to check if responses are equivalent.
+        /// </summary>
+        /// <param name="other">the object to compare this item to.</param>
+        /// <returns>Whether all properties match. Case sensitive check on content (for now)</returns>
         public bool Equals(HTTPResult other)
         {
             if (other == null)
@@ -28,14 +52,42 @@
         }
     }
 
+    /// <summary>
+    /// Represents a typed result from an HTTP call using the RestClient
+    /// </summary>
     public class HTTPResult<T>
     {
-        public HttpStatusCode HttpResponseCode { get; private set; }
-        public string Content { get; private set; }
-        public bool Success { get; private set; }
+        /// <summary>
+        /// The HTTP Response Code from the server.
+        /// </summary>
+        public HttpStatusCode HttpResponseCode { get; }
+
+        /// <summary>
+        /// The content of the response. May be populated in error scenarios.
+        /// </summary>
+        public string Content { get; }
+
+        /// <summary>
+        /// Memoizes the response's IsSuccessStatusCode 
+        /// </summary>
+        public bool Success { get; }
+
+        /// <summary>
+        /// Indicates whether the object could be deserialized from the content. 
+        /// </summary>
         public bool ParseSuccess { get; private set; }
+
+        /// <summary>
+        /// The deserialized object
+        /// </summary>
         public T Result { get; private set; }
 
+        /// <summary>
+        /// Creates an HTTP Response with the given parameters
+        /// </summary>
+        /// <param name="responsecode">The HTTP Response Code from the server</param>
+        /// <param name="content">The content of the response</param>
+        /// <param name="success">The response's IsSuccessStatusCode</param>
         public HTTPResult(HttpStatusCode responsecode, string content, bool success)
         {
             this.HttpResponseCode = responsecode;
@@ -52,7 +104,7 @@
             }
             catch
             {
-
+                // I'm fine swallowing this, but I'd prefer to log it in the future.
             }
         }
     }

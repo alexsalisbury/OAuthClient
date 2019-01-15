@@ -2,8 +2,8 @@
 {
     using System.Net;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Home.OAuthClients.Models;
     using Newtonsoft.Json;
+    using Home.OAuthClients.Models;
 
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
     public class HttpResult_Tests
@@ -77,6 +77,7 @@
             Assert.IsFalse(httpResult.Equals(httpResult2));
         }
     }
+
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
     public class HttpResult_T_Tests
     {
