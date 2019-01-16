@@ -1,0 +1,1 @@
+& "$env:userprofile\.nuget\packages\codecov\1.1.1\tools\codecov.exe -f .\Home.OAuthClients.Tests\testresults\*.trx"
