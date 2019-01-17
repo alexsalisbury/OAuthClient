@@ -1,1 +1,11 @@
-& "$env:userprofile\.nuget\packages\codecov\1.1.1\tools\codecov.exe -f .\Home.OAuthClients.Tests\testresults\*.trx"
+param
+(
+  $token
+)
+
+$ver = (gci "$env:userprofile\.nuget\packages\codecov").Name
+$cmd = "$env:userprofile\.nuget\packages\codecov\$ver\tools\codecov.exe";
+$fName = ".\Home.OAuthClients.Tests\coverage.opencover.xml";
+$arg1 = "-f ""$fName""";
+$arg2 = "-t $token";
+& $cmd $arg1 $arg2

@@ -6,66 +6,18 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
-  buildPlatform: 'x64'
+  buildPlatform: 'Any CPU'
   solution: '**\*.sln'
 
 steps:
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet 4.4.1'
+- script: |
+    dotnet build --configuration $(buildConfiguration)
+    dotnet test Home.OAuthClients.Tests --configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+    dotnet publish --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
   inputs:
-    versionSpec: 4.4.1
-
-
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '$(Parameters.solution)'
-
-
-- task: VSBuild@1
-  displayName: 'Build solution **\*.sln'
-  inputs:
-    solution: '$(solution)'
-
-    platform: '$(buildPlatform)'
-
-    configuration: '$(buildConfiguration)'
-
-
-- task: VSTest@2
-  displayName: 'VsTest - testAssemblies'
-  inputs:
-    testAssemblyVer2: |
-     **\$(buildConfiguration)\*\*.Tests.dll
-     !**\obj\**
-
-    codeCoverageEnabled: true
-
-    platform: '$(buildPlatform)'
-
-    configuration: '$(buildConfiguration)'
-
-
-- task: PublishSymbols@2
-  displayName: 'Publish symbols path'
-  inputs:
-    SearchPattern: '**\bin\**\*.pdb'
-
-    PublishSymbols: false
-
-  continueOnError: true
-
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-  inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-
-    Contents: '**\bin\$(buildConfiguration)\**'
-
-    TargetFolder: '$(build.artifactstagingdirectory)'
-
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+- powershell: .\codecov.ps1 -token $(CODECOV_TOKEN)
+  displayName: Upload to CodeCov.io
