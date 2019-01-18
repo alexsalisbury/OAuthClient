@@ -1,4 +1,4 @@
-﻿namespace Home.OAuthClients.Tests
+﻿namespace Home.OAuthClients.Tests.Models
 {
     using System.Net;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
