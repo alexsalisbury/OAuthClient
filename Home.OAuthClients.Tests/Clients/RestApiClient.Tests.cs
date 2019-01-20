@@ -1,5 +1,6 @@
 ﻿namespace Home.OAuthClients.Tests.Clients
 {
+    using System;
     using System.Net;
     using System.Net.Http;
     using System.Threading;
@@ -12,6 +13,8 @@
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
     public class RestApiClient_Tests
     {
+        Uri testUri = new Uri("http://127.0.0.1");
+
         internal class TestHttpMessageHandler : HttpMessageHandler
         {
             internal HttpResponseMessage ExpectedReponse { get; set; }
@@ -80,7 +83,7 @@
             var dataObject = ExampleDataObject.Generate();
             client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.OK, dataObject));
 
-            var result = await TestRestApiClient.GetAsync<ExampleDataObject>("http://localhost");
+            var result = await TestRestApiClient.GetAsync<ExampleDataObject>(testUri);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);
@@ -97,7 +100,7 @@
             var stringContent = JsonConvert.SerializeObject(dataObject);
             client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.Created, dataObject));
 
-            var result = await TestRestApiClient.PostAsync<ExampleDataObject>("http://localhost", stringContent);
+            var result = await TestRestApiClient.PostAsync<ExampleDataObject>(testUri, stringContent);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);
@@ -112,7 +115,7 @@
             var dataObject = ExampleDataObject.Generate();
             client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.Created, dataObject));
 
-            var result = await TestRestApiClient.PostAsync<ExampleDataObject>("http://localhost", dataObject.GenerateBody());
+            var result = await TestRestApiClient.PostAsync<ExampleDataObject>(testUri, dataObject.GenerateBody());
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);
@@ -129,7 +132,7 @@
             var stringContent = JsonConvert.SerializeObject(dataObject);
             client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.NoContent, dataObject));
 
-            var result = await TestRestApiClient.PutAsync<ExampleDataObject>("http://localhost", stringContent);
+            var result = await TestRestApiClient.PutAsync<ExampleDataObject>(testUri, stringContent);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);
@@ -145,7 +148,7 @@
             var dataObject = ExampleDataObject.Generate();
             client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.NoContent, dataObject));
 
-            var result = await TestRestApiClient.PutAsync<ExampleDataObject>("http://localhost", dataObject.GenerateBody());
+            var result = await TestRestApiClient.PutAsync<ExampleDataObject>(testUri, dataObject.GenerateBody());
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);
@@ -160,7 +163,7 @@
             var client = new TestRestApiClient();
             client.SetExpectedResponse(GenerateResponse(HttpStatusCode.Accepted));
 
-            var result = await TestRestApiClient.DeleteAsync("http://localhost");
+            var result = await TestRestApiClient.DeleteAsync(testUri);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);

@@ -1,5 +1,6 @@
 ﻿namespace Home.OAuthClients.Tests.Models
 {
+    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Home.OAuthClients.Models;
 
@@ -9,12 +10,14 @@
         [TestMethod]
         public void AuthParams_ClientString()
         {
+            Uri testUri = new Uri("http://127.0.0.1");
+
             var result = $"client_id=Test&response_type=code&redirect_uri=localhost";
             var ap = new AuthParameters()
             {
                 ClientId = "Test",
                 ClientSecret = "Secret",
-                RedirectUri = "localhost"
+                RedirectUri = testUri
             };
 
             var url = ap.GetQueryString();

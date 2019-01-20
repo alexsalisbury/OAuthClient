@@ -1,11 +1,12 @@
-﻿namespace Home.OAuthClients.Models
+﻿using System;
+
+namespace Home.OAuthClients.Models
 {
     /// <summary>
     /// The <see cref="AuthParameters"/>.
     /// </summary>
     public class AuthParameters
     {
-
         /// <summary>
         /// Gets or sets the authentication client id.
         /// </summary>
@@ -20,7 +21,7 @@
         /// <summary>
         /// Gets or sets the authentication redirect uri.
         /// </summary>
-        public string RedirectUri { get; set; }
+        public Uri RedirectUri { get; set; }
 
         /// <summary>
         /// Generates a query string used for OAuth2 code requests
@@ -32,7 +33,7 @@
             var queryString =
                    $"client_id={this.ClientId}" +
                    $"&response_type=code" +
-                   $"&redirect_uri={this.RedirectUri}";
+                   $"&redirect_uri={this.RedirectUri.AbsoluteUri}";
 
             return queryString;
         }

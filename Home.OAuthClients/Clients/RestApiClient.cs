@@ -13,7 +13,7 @@
     {
         protected static HttpClient Client;
 
-        public static async Task<HTTPResult<T>> GetAsync<T>(string requestUrl)
+        public static async Task<HTTPResult<T>> GetAsync<T>(Uri requestUrl)
         {
             var response = await Client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
             var resultContent = await response.Content.ReadAsStringAsync();
@@ -21,7 +21,7 @@
             return new HTTPResult<T>(response.StatusCode, resultContent, response.IsSuccessStatusCode);
         }
 
-        public static async Task<HTTPResult<T>> PostAsync<T>(string requestUrl, IEnumerable<KeyValuePair<string, string>> body)
+        public static async Task<HTTPResult<T>> PostAsync<T>(Uri requestUrl, IEnumerable<KeyValuePair<string, string>> body)
         {
             using (var content = new FormUrlEncodedContent(body))
             {
@@ -29,7 +29,7 @@
             }
         }
 
-        public static async Task<HTTPResult<T>> PostAsync<T>(string requestUrl, string body, string contentType = null)
+        public static async Task<HTTPResult<T>> PostAsync<T>(Uri requestUrl, string body, string contentType = null)
         {
             var content = new StringContent(body);
             if (!string.IsNullOrEmpty(contentType))
@@ -40,7 +40,7 @@
             return await PostAsync<T>(requestUrl, content);
         }
 
-        public static async Task<HTTPResult<T>> PostAsync<T>(string requestUrl, HttpContent content)
+        public static async Task<HTTPResult<T>> PostAsync<T>(Uri requestUrl, HttpContent content)
         {
             var response = await Client.PostAsync(requestUrl, content);
             var resultContent = await response.Content.ReadAsStringAsync();
@@ -48,7 +48,7 @@
             return new HTTPResult<T>(response.StatusCode, resultContent, response.IsSuccessStatusCode);
         }
 
-        public static async Task<HTTPResult<T>> PutAsync<T>(string requestUrl, IEnumerable<KeyValuePair<string, string>> body)
+        public static async Task<HTTPResult<T>> PutAsync<T>(Uri requestUrl, IEnumerable<KeyValuePair<string, string>> body)
         {
             using (var content = new FormUrlEncodedContent(body))
             {
@@ -56,7 +56,7 @@
             }
         }
 
-        public static async Task<HTTPResult<T>> PutAsync<T>(string requestUrl, string body, string contentType = null)
+        public static async Task<HTTPResult<T>> PutAsync<T>(Uri requestUrl, string body, string contentType = null)
         {
             var content = new StringContent(body);
             if (!string.IsNullOrEmpty(contentType))
@@ -67,7 +67,7 @@
             return await PutAsync<T>(requestUrl, content);
         }
 
-        public static async Task<HTTPResult<T>> PutAsync<T>(string requestUrl, HttpContent content)
+        public static async Task<HTTPResult<T>> PutAsync<T>(Uri requestUrl, HttpContent content)
         {
             var response = await Client.PutAsync(requestUrl, content);
             var resultContent = await response.Content.ReadAsStringAsync();
@@ -75,7 +75,7 @@
             return new HTTPResult<T>(response.StatusCode, resultContent, response.IsSuccessStatusCode);
         }
 
-        public static async Task<HTTPResult> DeleteAsync(string requestUrl)
+        public static async Task<HTTPResult> DeleteAsync(Uri requestUrl)
         {
             var response = await Client.DeleteAsync(requestUrl);
             string resultContent = null;
