@@ -1,6 +1,7 @@
 ﻿namespace Home.OAuthClients.Tests.Helpers
 {
     using System;
+    using System.Collections.Generic;
     using Newtonsoft.Json;
 
     internal class ExampleDataObject : IEquatable<ExampleDataObject>
@@ -22,6 +23,17 @@
                 Content = Guid.NewGuid().ToString(),
                 Timestamp = DateTime.UtcNow
             };
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> GenerateBody()
+        {
+            var result = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("content", Content),
+                new KeyValuePair<string, string>("timestamp", Timestamp.ToString())
+            };
+
+            return result;
         }
 
         /// <summary>
