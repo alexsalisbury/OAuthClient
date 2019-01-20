@@ -13,11 +13,6 @@
     {
         protected static HttpClient Client;
 
-        internal static void SetupClient(HttpClient client = null, bool force = false)
-        {
-            Client = force ? new HttpClient() : client ?? new HttpClient();
-        }
-
         public static async Task<HTTPResult<T>> GetAsync<T>(string requestUrl)
         {
             var response = await Client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);

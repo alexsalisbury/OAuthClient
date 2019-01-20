@@ -94,8 +94,24 @@
         {
             var client = new TestRestApiClient();
             var dataObject = ExampleDataObject.Generate();
+            var stringContent = JsonConvert.SerializeObject(dataObject);
             client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.Created, dataObject));
-            
+
+            var result = await TestRestApiClient.PostAsync<ExampleDataObject>("http://localhost", stringContent);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Success);
+            Assert.IsTrue(result.ParseSuccess);
+            Assert.IsTrue(dataObject.Equals(result.Result));
+            Assert.AreEqual(HttpStatusCode.Created, result.HttpResponseCode);
+        }
+        [TestMethod]
+        public async Task Post_BasicKV()
+        {
+            var client = new TestRestApiClient();
+            var dataObject = ExampleDataObject.Generate();
+            client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.Created, dataObject));
+
             var result = await TestRestApiClient.PostAsync<ExampleDataObject>("http://localhost", dataObject.GenerateBody());
 
             Assert.IsNotNull(result);
@@ -110,9 +126,26 @@
         {
             var client = new TestRestApiClient();
             var dataObject = ExampleDataObject.Generate();
+            var stringContent = JsonConvert.SerializeObject(dataObject);
             client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.NoContent, dataObject));
 
-            var result = await TestRestApiClient.PostAsync<ExampleDataObject>("http://localhost", dataObject.GenerateBody());
+            var result = await TestRestApiClient.PutAsync<ExampleDataObject>("http://localhost", stringContent);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Success);
+            Assert.IsTrue(result.ParseSuccess);
+            Assert.IsTrue(dataObject.Equals(result.Result));
+            Assert.AreEqual(HttpStatusCode.NoContent, result.HttpResponseCode);
+        }
+
+        [TestMethod]
+        public async Task Put_BasicKV()
+        {
+            var client = new TestRestApiClient();
+            var dataObject = ExampleDataObject.Generate();
+            client.SetExpectedResponse(GenerateResponse<ExampleDataObject>(HttpStatusCode.NoContent, dataObject));
+
+            var result = await TestRestApiClient.PutAsync<ExampleDataObject>("http://localhost", dataObject.GenerateBody());
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);
