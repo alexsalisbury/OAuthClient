@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using Home.OAuthClients.Models;
+    using Home.OAuthClients.Tests.Helpers;
 
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
     public class HttpResult_Tests
@@ -85,10 +86,10 @@
         public void InstantiateResult()
         {
             string content = "test_content";
-            var contentObject = new HTTPResult(HttpStatusCode.Accepted, content, true);
+            var contentObject = ExampleDataObject.Generate();
             var serializedResult = JsonConvert.SerializeObject(contentObject);
 
-            var httpResult = new HTTPResult<HTTPResult>(HttpStatusCode.Accepted, serializedResult, true);
+            var httpResult = new HTTPResult<ExampleDataObject>(HttpStatusCode.Accepted, serializedResult, true);
 
 
             Assert.IsNotNull(httpResult);
@@ -97,9 +98,9 @@
             Assert.AreEqual(serializedResult, httpResult.Content);
             Assert.AreEqual(HttpStatusCode.Accepted, httpResult.HttpResponseCode);
             Assert.IsNotNull(httpResult.Result);
-            //Assert.IsTrue(contentObject.Equals(httpResult.Result));
-            Assert.AreEqual(content, httpResult.Result.Content);
-            Assert.AreEqual(true, httpResult.Result.Success);
+            Assert.IsTrue(contentObject.Equals(httpResult.Result));
+            //Assert.AreEqual(content, httpResult.Result.Content);
+            //Assert.AreEqual(true, httpResult.Result.Success);
             //Assert.AreEqual(HttpStatusCode.Accepted, httpResult.Result.HttpResponseCode);
         }
     }
