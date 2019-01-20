@@ -82,10 +82,13 @@
 
         public static async Task<HTTPResult> DeleteAsync(string requestUrl)
         {
-                var response = await Client.DeleteAsync(requestUrl);
-                var resultContent = await response.Content.ReadAsStringAsync();
+            var response = await Client.DeleteAsync(requestUrl);
+            string resultContent = null;
 
-                ValidateResponseCode(response.StatusCode, resultContent);
+            if (response.Content != null)
+                resultContent = await response.Content?.ReadAsStringAsync();
+
+            ValidateResponseCode(response.StatusCode, resultContent);
 
             return new HTTPResult(response.StatusCode, resultContent, response.IsSuccessStatusCode);
         }

@@ -8,7 +8,6 @@
     using Newtonsoft.Json;
     using Home.OAuthClients.Clients;
     using Home.OAuthClients.Tests.Helpers;
-    using System;
 
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
     public class RestApiClient_Tests
@@ -126,7 +125,6 @@
         public async Task Delete_Basic()
         {
             var client = new TestRestApiClient();
-            var dataObject = ExampleDataObject.Generate();
             client.SetExpectedResponse(GenerateResponse(HttpStatusCode.Accepted));
 
             var result = await TestRestApiClient.DeleteAsync("http://localhost");
