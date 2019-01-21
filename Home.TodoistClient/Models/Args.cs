@@ -1,7 +1,6 @@
 ﻿namespace Home.Todoist.Models
 {
     using Newtonsoft.Json;
-    using System;
 
     public partial class Args
     {

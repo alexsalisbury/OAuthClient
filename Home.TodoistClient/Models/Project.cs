@@ -1,7 +1,7 @@
 ﻿namespace Home.Todoist.Models
 {
     using Newtonsoft.Json;
-    using Todoist.Converters;
+    using Home.Todoist.Converters;
 
     public partial class Project
     {

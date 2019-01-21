@@ -1,32 +1,43 @@
 ﻿namespace Home.Todoist.Models
 {
-    using Newtonsoft.Json;
     using System;
+    using Newtonsoft.Json;
 
-    public class SyncCommand
+    internal class SyncCommand
     {
+        internal struct ArgsObject
+        {
+            public ArgsObject(uint[] args)
+            {
+                this.Ids = args;
+            }
+
+            [JsonProperty("ids")]
+            uint[] Ids { get; set; }
+        }
+
         [JsonProperty("type")]
         internal string Type { get; set; }
 
         [JsonProperty("uuid")]
-        public string UUID { get; set; }
+        internal string UUID { get; set; }
 
         [JsonProperty("args")]
-        internal Args Args { get; set; }
+        internal ArgsObject Args { get; set; }
 
-        public SyncCommand(string command, Args args)
+        internal SyncCommand(string command, uint[] ids)
         {
             this.Type = command;
             this.UUID = Guid.NewGuid().ToString();
-            this.Args = args;
+            this.Args = new ArgsObject(ids);
         }
 
-        public SyncCommand(string command, uint id)
+        internal SyncCommand(string command, uint id)
         {
             var ids = new uint[] { id };
             this.Type = command;
             this.UUID = Guid.NewGuid().ToString();
-            this.Args = new Args(ids);
+            this.Args = new ArgsObject(ids);
         }
     }
 }

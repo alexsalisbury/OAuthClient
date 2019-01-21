@@ -5,6 +5,18 @@
 
     public partial class TemporaryResourceIdMapping
     {
+        public partial class Args
+        {
+            [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+            public string Name { get; set; }
+
+            [JsonProperty("content", NullValueHandling = NullValueHandling.Ignore)]
+            public string Content { get; set; }
+
+            [JsonProperty("project_id", NullValueHandling = NullValueHandling.Ignore)]
+            public Guid? ProjectId { get; set; }
+        }
+
         [JsonProperty("type")]
         public string Type { get; set; }
 
