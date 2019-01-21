@@ -1,8 +1,6 @@
 ﻿namespace Home.OAuthClients.Clients
 {
     using System;
-    using System.Diagnostics;
-    using System.Threading.Tasks;
     using Home.OAuthClients.Models;
 
     public abstract class OAuthApiClient : RestApiClient

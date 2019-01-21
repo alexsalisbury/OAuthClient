@@ -7,7 +7,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   buildPlatform: 'Any CPU'
-  solution: '**\*.sln'
+  solution: '**\OAuthClient.sln'
 
 steps:
 - script: |
