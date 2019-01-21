@@ -13,7 +13,7 @@ steps:
 - script: |
     dotnet build $(solution) --configuration $(buildConfiguration)
     dotnet test Home.OAuthClients.Tests --configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    dotnet publish --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
+    dotnet publish $(solution) --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
 - task: PublishTestResults@2
   condition: succeededOrFailed()
   inputs:
