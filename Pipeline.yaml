@@ -13,7 +13,7 @@ steps:
 - script: |
     dotnet build OAuthClient.sln --configuration $(buildConfiguration)
     dotnet test Home.OAuthClients.Tests --configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-	dotnet test Home.TodoistClient.Tests --configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+    dotnet test Home.TodoistClient.Tests --configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     dotnet publish OAuthClient.sln --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
 - task: PublishTestResults@2
   condition: succeededOrFailed()
