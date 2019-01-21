@@ -1,9 +1,9 @@
-﻿namespace Home.Todoist.Models
+﻿namespace Home.TodoistClient.Models
 {
     using System.Collections.Generic;
     using System.Dynamic;
     using Newtonsoft.Json;
-    using Home.Todoist.Converters;
+    using Home.TodoistClient.Converters;
 
     /// <summary>
     /// https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject?view=netframework-4.7.2

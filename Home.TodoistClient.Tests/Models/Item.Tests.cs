@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Home.Todoist.Models;
+    using Home.TodoistClient.Models;
 
     [TestClass]
     public class Item_Tests

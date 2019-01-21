@@ -1,4 +1,4 @@
-﻿namespace Home.Todoist.Converters
+﻿namespace Home.TodoistClient.Converters
 {
     using System;
     using Newtonsoft.Json;

@@ -1,4 +1,4 @@
-﻿namespace Home.Todoist.Models
+﻿namespace Home.TodoistClient.Models
 {
     /// <summary>
     /// Stub object. This is undocumented in official Sync API. 

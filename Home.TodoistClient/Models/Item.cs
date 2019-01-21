@@ -1,8 +1,8 @@
-﻿namespace Home.Todoist.Models
+﻿namespace Home.TodoistClient.Models
 {
     using System.Collections.Generic;
     using Newtonsoft.Json;
-    using Home.Todoist.Converters;
+    using Home.TodoistClient.Converters;
 
     public partial class Item
     {

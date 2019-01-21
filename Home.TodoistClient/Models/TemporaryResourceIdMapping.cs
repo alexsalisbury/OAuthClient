@@ -1,4 +1,4 @@
-﻿namespace Home.Todoist.Models
+﻿namespace Home.TodoistClient.Models
 {
     using System;
     using Newtonsoft.Json;

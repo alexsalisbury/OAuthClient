@@ -1,11 +1,8 @@
 ﻿namespace Home.TodoistClient.Tests.Converters
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using Home.Todoist.Converters;
     using Newtonsoft.Json;
+    using Home.TodoistClient.Converters;
 
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
     public class BoolConverter_Tests

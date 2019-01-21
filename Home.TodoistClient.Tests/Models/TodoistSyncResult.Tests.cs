@@ -1,7 +1,7 @@
 namespace Home.TodoistClient.Tests.Models
 {
     using System.Net;
-    using Home.Todoist.Models;
+    using Home.TodoistClient.Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

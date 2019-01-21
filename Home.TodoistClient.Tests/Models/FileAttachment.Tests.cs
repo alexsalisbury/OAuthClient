@@ -2,7 +2,7 @@
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Home.Todoist.Models;
+    using Home.TodoistClient.Models;
 
     [TestClass]
     public class FileAttachment_Tests

@@ -1,8 +1,8 @@
-﻿namespace Home.Todoist.Models
+﻿namespace Home.TodoistClient.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using Home.Todoist.Converters;
+    using Home.TodoistClient.Converters;
     using Newtonsoft.Json;
 
     public partial class User
