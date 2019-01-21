@@ -1,6 +1,8 @@
 ﻿namespace Home.Todoist.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
+    using Home.Todoist.Converters;
     using Newtonsoft.Json;
 
     public partial class User
@@ -79,18 +81,21 @@
         /// Whether to use the DD-MM-YYYY date format (if set to 0), or the MM-DD-YYYY format (if set to 1).
         /// </summary>
         [JsonProperty("date_format")]
+        [Range(0, 1)]
         public uint DateFormat { get; set; }
 
         /// <summary>
         /// Whether to use a 24h format such as 13:00 (if set to 0) when displaying time, or a 12h format such as 1:00pm (if set to 1).
         /// </summary>
         [JsonProperty("time_format")]
+        [Range(0, 1)]
         public uint TimeFormat { get; set; }
 
         /// <summary>
         /// Whether to show projects in an oldest dates first order (if set to 0, or a oldest dates last order (if set to 1).
         /// </summary>
         [JsonProperty("sort_order")]
+        [Range(0, 1)]
         public uint SortOrder { get; set; }
 
         /// <summary>
@@ -140,7 +145,7 @@
         public uint Karma { get; set; }
 
         /// <summary>
-        /// The user’s karma trend (for example up).
+        /// The user’s karma trend (for example up, "-", ).
         /// </summary>
         [JsonProperty("karma_trend")]
         public string KarmaTrend { get; set; }
@@ -205,7 +210,8 @@
         /// The currently selected Todoist theme (a number between 0 and 10).
         /// </summary>
         [JsonProperty("theme")]
-        public long Theme { get; set; }
+        [Range(0, 10)]
+        public uint Theme { get; set; }
 
         /// <summary>
         /// Used internally for any special features that apply to the user. 
@@ -253,19 +259,20 @@
         /// Minutes from GMT
         /// </summary>
         [JsonProperty("minutes")]
-        public long Minutes { get; set; }
+        public int Minutes { get; set; }
 
         /// <summary>
         /// Hours from GMT
         /// </summary>
         [JsonProperty("hours")]
-        public long Hours { get; set; }
+        public int Hours { get; set; }
 
         /// <summary>
         /// Is Daylight Savings Time
         /// </summary>
         [JsonProperty("is_dst")]
-        public long IsDst { get; set; }
+        [JsonConverter(typeof(BoolConverter))]
+        public bool IsDst { get; set; }
 
         /// <summary>
         /// String representation of Distance from GMT.

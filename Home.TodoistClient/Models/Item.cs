@@ -75,6 +75,7 @@
 
         /// <summary>
         /// The order of the task inside the Today or Next 7 days view (a number, where the smallest value would place the task at the top).
+        /// -1 seems to be valid.
         /// </summary>
         [JsonProperty("day_order")]
         public int DayOrder { get; set; }

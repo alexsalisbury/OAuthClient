@@ -5,6 +5,14 @@
 
     public partial class Project
     {
+        public enum IndentLevel
+        {
+            Level1 = 1,
+            Level2 = 2,
+            Level3 = 3,
+            Level4 = 4
+        }
+
         /// <summary>
         /// The id of the project.
         /// </summary>
@@ -29,7 +37,7 @@
         /// The indent of the item (a number between 1 and 4, where 1 is top-level).
         /// </summary>
         [JsonProperty("indent")]
-        public uint Indent { get; set; }
+        public IndentLevel Indent { get; set; }
 
         /// <summary>
         /// 	Project’s order in the project list (a number, where the smallest value should place the project at the top).
