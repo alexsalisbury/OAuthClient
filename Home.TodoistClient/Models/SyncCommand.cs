@@ -3,9 +3,9 @@
     using System;
     using Newtonsoft.Json;
 
-    internal class SyncCommand
+    public class SyncCommand
     {
-        internal struct ArgsObject
+        public struct ArgsObject
         {
             public ArgsObject(uint[] args)
             {
@@ -13,26 +13,26 @@
             }
 
             [JsonProperty("ids")]
-            uint[] Ids { get; set; }
+            public uint[] Ids { get; set; }
         }
 
         [JsonProperty("type")]
-        internal string Type { get; set; }
+        public string Type { get; set; }
 
         [JsonProperty("uuid")]
-        internal string UUID { get; set; }
+        public string UUID { get; set; }
 
         [JsonProperty("args")]
-        internal ArgsObject Args { get; set; }
+        public ArgsObject Args { get; set; }
 
-        internal SyncCommand(string command, uint[] ids)
+        public SyncCommand(string command, uint[] ids)
         {
             this.Type = command;
             this.UUID = Guid.NewGuid().ToString();
             this.Args = new ArgsObject(ids);
         }
 
-        internal SyncCommand(string command, uint id)
+        public SyncCommand(string command, uint id)
         {
             var ids = new uint[] { id };
             this.Type = command;
