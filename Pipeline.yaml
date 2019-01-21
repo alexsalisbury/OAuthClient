@@ -11,9 +11,9 @@ variables:
 
 steps:
 - script: |
-    dotnet build $(solution) --configuration $(buildConfiguration)
+    dotnet build OAuthClient.sln --configuration $(buildConfiguration)
     dotnet test Home.OAuthClients.Tests --configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    dotnet publish $(solution) --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
+    dotnet publish OAuthClient.sln --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
 - task: PublishTestResults@2
   condition: succeededOrFailed()
   inputs:
