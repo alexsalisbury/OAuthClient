@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -13,13 +12,28 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="SpecFlow" Version="3.0.161-beta" />
+    <PackageReference Include="SpecFlow.MsTest" Version="3.0.161-beta" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.161-beta" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Home.TodoistClient\Home.TodoistClient.csproj" />
   </ItemGroup>
 
+<PropertyGroup>
+  <ShowTrace>true</ShowTrace>
+  <ForceGeneration>true</ForceGeneration>
+  <VerboseOutput>true</VerboseOutput>
+</PropertyGroup>
+
+<Target Name="AfterUpdateFeatureFilesInProject">
+    <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
+    <ItemGroup>
+        <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
+    </ItemGroup>
+</Target>
 </Project>
