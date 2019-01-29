@@ -11,11 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		codecov.ps1 = codecov.ps1
 		Pipeline.yaml = Pipeline.yaml
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.TodoistClient", "Home.TodoistClient\Home.TodoistClient.csproj", "{56421048-5AB7-43A8-BF7C-E2A4289FBC84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.TodoistClient", "Home.TodoistClient\Home.TodoistClient.csproj", "{56421048-5AB7-43A8-BF7C-E2A4289FBC84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.TodoistClient.Tests", "Home.TodoistClient.Tests\Home.TodoistClient.Tests.csproj", "{5C932979-AD09-49AC-81A1-BA6D917AA874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home.TodoistClient.Tests", "Home.TodoistClient.Tests\Home.TodoistClient.Tests.csproj", "{5C932979-AD09-49AC-81A1-BA6D917AA874}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
